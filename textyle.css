@@ -59,19 +59,19 @@ fieldset{ border:0; padding:0; margin:0;}
 #footer a:active,
 #footer a:focus{ text-decoration:underline;}
 
-#footer .powered { padding-bottom:20px; padding-top:20px; }
+#footer .powered { padding-bottom:20px; padding-top:20px; text-align:left; }
 
 /* Content */
 #content {}
 	#content .content { position:relative; }
-	#content .content .extra { position:absolute; left:-74px; width:52px; text-align:right; top:0; font-size:11px; color:#535353; }
+	#content .content .extra { position:absolute; left:-74px; width:52px; text-align:right; top:-5px; padding-top:5px; font-size:11px; color:#535353; }
 		#content .content .extra .date { font-family:"Segoe UI"; font-size:10px; }
-	
-	#content .content .extra .category,
-	#content .content .extra .author { border-top:1px solid #e0e0e0; padding-top:6px; margin-top:6px; }
-	#content .content .extra .edit { margin-top:10px; }
 
-#content .postTitle{ position:relative; padding:5px 0; margin:0 0 10px 0; font-size:18px; color:#000; }
+		#content .content .extra .category,
+		#content .content .extra .author { border-top:1px solid #e0e0e0; padding-top:6px; margin-top:6px; }
+		#content .content .extra .edit { margin-top:10px; }
+
+#content .postTitle{ position:relative; padding:0; margin:0 0 10px 0; font-size:18px; color:#000; }
 #content .postTitle em{ font-style:normal; color:#ff1a1a;}
 #content .postTitle .category{ font-weight:normal; padding:0 0 0 10px; margin:0 0 0 5px; font-size:12px; background:url(img/lineVrText.gif) no-repeat left center; color:#666;}
 
@@ -79,6 +79,19 @@ fieldset{ border:0; padding:0; margin:0;}
 #content .postTitle a:hover,
 #content .postTitle a:active,
 #content .postTitle a:focus{ text-decoration:underline;}
+
+#content .postRow { width:172px; float:left; margin-right:40px; }
+
+#content .postRow .postWrap { margin-bottom:20px; }
+	#content .postWrap .postTitle { font-size:12px; color:#1c1c1c; margin-top:10px; margin-bottom:4px; }
+	#content .postWrap .postContent { font-size:11px; color:#777777; }
+
+#content .pagination { display:none; position:relative; margin-top:24px; height:24px; border-top:1px solid #CCCCCC; }
+	#content .pagination a { color:#C01000; text-decoration:none; }
+	#content .pagination a:hover { text-decoration:underline; }
+
+	#content .pagination span.prev { position:absolute; left:10px; top:10px; padding-left:14px; background:url(img/icon_left.png) no-repeat left; }
+	#content .pagination span.next { position:absolute; right:10px; top:10px; padding-right:14px; background:url(img/icon_right.png) no-repeat right; }
 
 /* fotowall style */
 
@@ -97,14 +110,9 @@ fieldset{ border:0; padding:0; margin:0;}
 #content .postMeta .author{ padding:0 0 0 6px; margin:0 0 0 4px; text-decoration:none; color:#000; background:url(img/lineVrText.gif) no-repeat left center;}
 #content .postMeta a.editPost{ padding:0 0 0 8px; text-decoration:underline; margin-left:5px; color:#666; background:url(img/lineVrText.gif) no-repeat left center; *zoom:1;}
 
-#content .summarySpot{ float:left; margin-right:1.5em !important; position:relative;}
-#content .summaryMore{ clear:both; text-align:right;}
-#content .summaryMore a{ color:#666;}
-
 /* Feedback */
-.feedback{ margin-bottom:30px; padding-top:1em; border-top:1px dotted #bdbdbd;}
-.feedback .feedbackTitle{ height:19px; overflow:hidden; font-size:14px; margin-top:0;}
-.feedback .feedbackTitle em{ display:inline-block; margin:0 5px 0 6px; padding:0 10px 0 4px; height:19px; font-style:normal; color:#ff1a1a;}
+.feedback{ position:relative; margin-top:20px; margin-bottom:20px; padding-top:20px;;/* border-top:1px solid #ddd; */}
+.feedback .feedbackTitle{ height:19px; overflow:hidden; font-size:12px; margin-top:0; padding-bottom:6px; border-bottom:1px dotted #ccc; }
 
 .feedback .feedbackOrder{ position:relative; margin:0; padding:0; *zoom:1;}
 .feedback .feedbackOrder .item{ position:relative; *zoom:1;}
@@ -113,12 +121,13 @@ fieldset{ border:0; padding:0; margin:0;}
 .feedback.trackback .data{ color:#8b8b8b;}
 .feedback.trackback .item{ padding:15px 0; list-style:none; border-top:1px solid #e5e5e5;}
 
+.feedback.reply { margin-bottom:0; }
 .feedback.reply .feedbackOrder{ overflow:hidden;}
-.feedback.reply .item{ top:-1px; padding:15px 0; list-style:none; border-top:1px solid #e5e5e5;}
+.feedback.reply .item{ top:-1px; padding:0; padding-bottom:20px; list-style:none; }
 
-.feedback .trackbackURL{ *zoom:1;}
+.feedback .trackbackURL{ *zoom:1; position:absolute; right:0; top:10px; }
 .feedback .trackbackURL:after{ content:""; display:block; clear:both;}
-.feedback .trackbackURL dt{ float:left; width:160px; font-weight:bold; color:#666;}
+.feedback .trackbackURL dt{ float:left; width:80px; font-weight:bold; color:#aaa;}
 .feedback .trackbackURL dd{ float:left; margin:0;}
 .feedback .trackbackURL dd a{ font-size:11px; color:#666; text-decoration:none;}
 .feedback .trackbackURL dd a:hover,
@@ -162,7 +171,7 @@ fieldset{ border:0; padding:0; margin:0;}
 .feedback .date{ margin:0; font-size:9px; color:#666;}
 .feedback .date .hhmm{ color:#8b8b8b;}
 
-.feedback .meta{ display:table-cell; width:140px; padding:0 20px 0 0; margin:0; *zoom:1; float:left;}
+.feedback .meta{ display:table-cell; width:100px; padding:0 20px 0 0; margin:0; *zoom:1; float:left;}
 .feedback .meta:after{ content:""; display:block; clear:both;}
 .feedback .meta a{ text-decoration:none;}
 .feedback .meta a:hover,
@@ -170,7 +179,7 @@ fieldset{ border:0; padding:0; margin:0;}
 .feedback .meta a:focus{ text-decoration:underline;}
 .feedback .meta .thumb{ float:left; margin:0 10px 5px 0;}
 .feedback .meta .thumb img{ border:1px solid #ededed; vertical-align:middle; width:39px; height:39px;}
-.feedback .meta .author{ margin:0 0 5px 0; padding:0; color:#666; font-size:12px;}
+.feedback .meta .author{ margin:0 0 5px 0; padding:0; color:#C01000; font-size:12px;}
 .feedback .meta .author a{ color:#000;}
 .feedback .meta .title{ margin:0; padding:0; color:#666; font-size:12px;}
 .feedback .meta .title a{ color:#000;}
@@ -195,7 +204,8 @@ fieldset{ border:0; padding:0; margin:0;}
 .feedback .reAction li a:hover,
 .feedback .reAction li a:active,
 .feedback .reAction li a:focus{ text-decoration:underline;}
-.feedback .reAction li button{ overflow:visible; border:0; background:transparent; cursor:pointer; padding:0; font-size:11px; color:#666;}
+.feedback .reAction li button { overflow:visible; border:0; background:transparent; cursor:pointer; padding:0; font-size:11px; color:#999; font-family:"Malgun Gothic"; }
+.feedback .reAction li .sep { color:#ccc; margin-right:4px; }
 
 .feedback .pwForm{ margin:0; padding:0; display:none;}
 .feedback .pwForm.active{ display:block;}
@@ -204,7 +214,7 @@ fieldset{ border:0; padding:0; margin:0;}
 .feedback .pwForm .inputText{ font-size:11px; padding:2px 4px 4px 4px; height:12px; width:90px; margin:0 -1px 0 0;}
 .feedback .pwForm .submit{ border:1px solid #c2c2c2; border-top-color:#9c9c9c; border-left:0; background:#eee; padding:0 2px; height:20px; cursor:pointer; font-size:11px;}
 
-.replyForm{ margin-bottom:50px;}
+.replyForm{ padding-bottom:20px;}
 .replyForm.guestBook{ border:0;}
 .feedback .replyForm{ top:0 !important; padding:10px !important; margin-bottom:0; background:#f9f9f9;}
 .replyForm *{ font-size:12px;}
@@ -220,7 +230,7 @@ fieldset{ border:0; padding:0; margin:0;}
 .replyForm .inputText.url{ width:160px;}
 .replyForm .inputCheck{ vertical-align:middle;}
 .replyForm label{ vertical-align:middle; cursor:pointer;}
-.replyForm .inputSubmit{ border:1px solid #cacaca; cursor:pointer; overflow:visible; padding:7px 20px; font-family:Tahoma; font-weight:bold; display:block; margin:3px 0 0 0; color:#666; background:#f2f2f2;}
+.replyForm .inputSubmit{ border:1px solid #cacaca; cursor:pointer; overflow:visible; padding:7px 20px; font-family:Tahoma; font-weight:bold; display:block; margin:3px 0 0 0; color:#666; background:#f2f2f2; margin-top:10px; }
 .replyForm .inputSubmit:hover,
 .replyForm .inputSubmit:active,
 .replyForm .inputSubmit:focus{ background:#e8e8e8;}
@@ -229,7 +239,7 @@ fieldset{ border:0; padding:0; margin:0;}
 .replyForm span.url{ color:#8b8b8b; font-size:11px; margin:0 10px 0 0;}
 
 /* * paging */
-#paging {  padding-top:30px; padding-bottom:30px; color:#fff; font-size:12px; position:relative;	 }
+#paging {  padding-top:10px; padding-bottom:30px; color:#fff; font-size:12px; position:relative;	 }
 	#paging .tool { position:absolute; right:10px; top:20px; }
 
 	#paging a { color:#555; text-decoration:none; background:#eee; padding:5px; padding-left:8px; padding-right:8px; -moz-border-radius:4px; }
