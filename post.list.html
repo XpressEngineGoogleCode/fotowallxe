@@ -1,15 +1,29 @@
                     <!--@foreach($document_list as $document)-->
-                        <h2 class="postTitle"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{$document->getTitle()}</a> <span class="category">{$category_list[$document->get('category_srl')]->title}</span></h2>
-                        <p class="postMeta"><span class="yymmdd">{$document->getRegdate('Y.m.d')}</span> <span class="hhmm">{$document->getRegdate('H:i')}</span> <span class="author member_{$document->get('member_srl')}">{$document->getNickName()}</span> <a href="{getSiteUrl($textyle->domain,'document_srl',$document->document_srl,'act','dispTextyleToolPostManageWrite')}" class="editPost">Edit</a></p>
+					<div class="content">
+						 <div class="extra">
+							<div class="date">{$document->getRegdate('Y m.d')}</div>
+							<!--@if($document->get('category_srl'))-->
+								<div class="category">{$category_list[$document->get('category_srl')]->title}</div>
+							<!--@end-->
+							<div class="author">{$document->getNickName()}</div>
+							<div class="edit"><a href="{getSiteUrl($textyle->domain,'document_srl',$document->document_srl,'act','dispTextyleToolPostManageWrite')}" class="editPost"><img src="img/icon_pen.png" alt="Edit" /></a></div>
+						 </div>
+
+					     <!--@if($document->thumbnailExists())-->            
+							 <p class="thumbnail"><img src="{$document->getThumbnail(820,0,'ratio')}" class="thumbnail" alt="" /></p>
+						 <!--@end-->
+
+                        <h2 class="postTitle"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{$document->getTitle()}</a></h2>
+
                         <div class="textyleContent xe_content">
                             {$post_prefix}
-                            {$document->getContent(false)}
+                            {strip_tags($document->getContent(false),'<span><br>')} <!-- fotowall style -->
                             {$post_suffix}
                         </div>
                         {@$tag_list = $document->get('tag_list');}
                         <!--@if(count($tag_list))-->
                         <dl class="usedTag">
-                            <dt>Tag :</dt>
+                            <dt>태그 :</dt>
                             <dd>
                                 <!--@for($i=0,$c=count($tag_list);$i<$c;$i++)-->
                                 <a href="{getUrl('search_target','tag','search_keyword',$tag_list[$i],'document_srl','')}" rel="tag">{htmlspecialchars($tag_list[$i])}</a>
@@ -198,5 +212,6 @@
                             <!--@end-->
                         </div>
                     <!--@end-->
+					</div> <!-- content -->
                 <!--@end-->
 

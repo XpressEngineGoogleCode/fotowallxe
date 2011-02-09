@@ -1,35 +1,40 @@
 <div id="xe" class="fixed">
-	<div id="container" class="ce">
-		<div id="header">
-			<a href="#content" class="skipToContent">Skip to content</a>
-			<h1><a href="{$home_url}">{$textyle_title}</a></h1>
-			<hr />
-			<form action="{$root_url}" method="get" class="search">
-				<input name="vid" type="hidden" value="{$vid}" />
-				<input name="mid" type="hidden" value="{$mid}" />
-				<input name="act" type="hidden" value="dispTextyle" />
-				<input name="search_target" type="hidden" value="title_content" />
-				<fieldset>
-					<legend>{$lang->cmd_search}</legend>
-					<input name="search_keyword" type="text" class="inputText" value="{$search_keyword}" accesskey="S" title="SEARCH" />
-					<input type="image" src="img/buttonSearch.gif" alt="{$lang->cmd_search}" class="buttonSearch" />
-				</fieldset>
-			</form>
-			<hr />
-			<div class="extension">
-				<ul>
-					<li<!--@if($act=='dispTextyleProfile')--> class="active"<!--@end-->><a href="{$profile_url}">Profile</a></li>
-					<li<!--@if($act=='dispTextyleGuestbook')--> class="active"<!--@end-->><a href="{$guestbook_url}">GuestBook</a></li>
-                    <!--@foreach($extra_menus as $key => $val)-->
-					<li<!--@if($key==$mid || $val==getUrl('','mid',$mid))--> class="active"<!--@end-->><a href="{$val}">{$key}</a></li>
-                    <!--@end-->
+	<div id="hidden_area">
+		<div id="top">
+			<div class="width">
+				<ul id="top_navigation">
+					<li class="home selected"><a href="{$home_url}"><img src="img/icon_home.png" alt="Home" /></a></li>
 				</ul>
+
+				<div id="search_wrap">
+					<form action="{$root_url}" method="get" class="search">
+						<input name="vid" type="hidden" value="{$vid}" />
+						<input name="mid" type="hidden" value="{$mid}" />
+						<input name="act" type="hidden" value="dispTextyle" />
+						<input name="search_target" type="hidden" value="title_content" />
+						<fieldset>
+							<legend>{$lang->cmd_search}</legend>
+							<input name="search_keyword" type="text" class="inputText" value="{$search_keyword}" accesskey="S" title="SEARCH" align="absmiddle" />
+							<input type="submit" class="buttonSearch" value="{$lang->cmd_search}" align="absmiddle" />
+						</fieldset>
+					</form>
+				</div>
 			</div>
-			<a href="{$admin_url}" class="admin" accesskey="A">Admin</a>
+		</div> <!-- top -->
+		
+		<div id="down_button_area" class="width">		
+			<div class="button">
+				<img src="img/icon_search.png" alt="{$lang->cmd_search}}" /><br />
+			</div>
+		</div> <!-- down_button_area -->
+	</div> <!-- hidden_area -->
+
+	<div id="container">
+		<div id="header" class="width">
+			<h1><a href="{$home_url}">{$textyle_title}</a><!--@if(!empty($textyle_content))--><span class="sep">/</span> <span class="summary">{$textyle_content}</span><!--@end--></h1>
 		</div>
 
-        <hr />
-        <div id="body">
+        <div id="body" class="width">
             <div id="content">
                 <!--@if($textyle_mode == 'module')-->
                     {$content}
@@ -38,7 +43,6 @@
                 <!--@elseif($textyle_mode == 'profile')-->
                     <h2 class="postTitle">Profile</h2>
                     <div class="textyleContent xe_content">{$profile_content}</div>
-
                 <!--// GuestBook -->
                 <!--@else if($textyle_mode == 'guestbook')-->
 					<!--#include('guestbook.html')-->
@@ -62,63 +66,26 @@
 
                 <!--// display pagenavigation -->
                 <!--@if($page_navigation && $textyle_mode != 'module')-->
-                <div class="pagination paginationNum">
-                    <a href="{getUrl('page','','document_srl','','entry','')}" class="prev"><span>{$lang->first_page}</span></a>
+                <div id="paging">
                     <!--@while($page_no = $page_navigation->getNextPage())-->
-                    <!--@if($page == $page_no)-->
-                    <strong>{$page_no}</strong>
-                    <!--@else-->
-                    <a href="{getUrl('page',$page_no,'document_srl','','entry','')}">{$page_no}</a>
+						<!--@if($page == $page_no)-->
+						<a href="{getUrl('page',$page_no,'document_srl','','entry','')}" class="selected">{$page_no}</a>
+						<!--@else-->
+						<a href="{getUrl('page',$page_no,'document_srl','','entry','')}">{$page_no}</a>
+						<!--@end-->
                     <!--@end-->
-                    <!--@end-->
-                    <a href="{getUrl('page',$page_navigation->last_page,'document_srl','','entry','')}" class="next"><span>{$lang->last_page}</span></a>
                 </div>
                 <!--@end-->
             </div>
-            <hr />
-
-            <!--// Extension (widgets) -->
-            <div class="extension e1">
-                <div class="section">
-                    <h2>{$lang->category}</h2>
-                    <img class="zbxe_widget_output" widget="category" skin="default" total_title="{$lang->view_all}"  srl="{$textyle->module_srl}" />
-                </div>
-
-                <div class="section">
-                    <h2>{$lang->newest_document}</h2>
-                    <img class="zbxe_widget_output" widget="content" markup_type="list" list_count="10" skin="default" content_type="document" option_view="title" show_comment_count="Y" show_trackback_count="Y" show_category="N" show_icon="N" order_target="list_order" order_type="desc" thumbnail_type="crop" page_count="1" subject_cut_size="30" module_srls="{$textyle->module_srl}" />
-                </div>
-
-                <div class="section">
-                    <h2>{$lang->newest_comment}</h2>
-                    <img class="zbxe_widget_output" widget="content" markup_type="list" list_count="10" skin="default" content_type="comment" option_view="title" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="list_order" order_type="desc" thumbnail_type="crop" page_count="1" subject_cut_size="30" module_srls="{$textyle->module_srl}"/>
-                </div>
-
-                <div class="section">
-                    <h2>{$lang->newest_trackback}</h2>
-                    <img class="zbxe_widget_output" widget="content" markup_type="list" list_count="5" skin="default" content_type="trackback" option_view="title" show_comment_count="N" show_trackback_count="N" show_category="N" show_icon="N" order_target="list_order" order_type="desc" thumbnail_type="crop" page_count="1" subject_cut_size="30" module_srls="{$textyle->module_srl}"/>
-                </div>
-
-                <div class="section">
-                    <h2>{$lang->tag}</h2>
-                    <img class="zbxe_widget_output" widget="tag_list" list_count="20" skin="default" module_srls="{$textyle->module_srl}" />
-                </div>
-            </div>
         </div>
-        <hr />
+	</div>
 
-		<div id="footer">
-			<address>
-			Powered by <a href="http://textyle.kr/">Textyle</a> / Designed by <a href="http://blog.naver.com/comicbok" title="Lee Myeong Bok">Comicbok</a> / UI Dev. <a href="http://naradesign.net/" title="Jeong Chan Myeong">Naradesign</a>
-			</address>
-			<div class="language">
-				<button type="button" onclick="jQuery('#selectLang').toggleClass('hide'); return false;" class="selected" title="{$lang_type}">{$lang_supported[$lang_type]}</button>
-            	<ul class="hide" id="selectLang">
-                	<!--@foreach($lang_supported as $key => $val)--><!--@if($key!= $lang_type)-->
-                	<li><button type="button" onclick="doChangeLangType('{$key}');return false;">{$val}</button></li>
-                	<!--@end--><!--@end-->
-            	</ul>
+	<div id="footer">
+		<div class="width">
+			<div class="powered">
+				<a href="http://fotowall.net"><img src="img/icon_fotowall.png" alt="it's fotowall" /></a>
 			</div>
 		</div>
 	</div>
+
 </div>
