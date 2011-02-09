@@ -80,7 +80,8 @@ fieldset{ border:0; padding:0; margin:0;}
 #content .postTitle a:active,
 #content .postTitle a:focus{ text-decoration:underline;}
 
-#content .postRow { width:172px; float:left; margin-right:40px; }
+#content .postRow { width:175px; float:left; margin-right:40px; }
+#content .postRowEnd { margin-right:0; }
 
 #content .postRow .postWrap { margin-bottom:20px; }
 	#content .postWrap .postTitle { font-size:12px; color:#1c1c1c; margin-top:10px; margin-bottom:4px; }
