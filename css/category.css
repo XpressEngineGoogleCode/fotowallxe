@@ -1,0 +1,53 @@
+.dropdown { display: inline-block; }
+
+.dropdown dd, .dropdown dt, .dropdown ul { margin:0px; padding:0px; }
+.dropdown dd { position:relative; z-index:1; }
+
+.dropdown dt {  background:url("../img/bg_dropdown.gif") repeat-x bottom #f5f5f5;  border:1px solid #a4a4a4; 
+					-moz-box-shadow: 0px 1px 1px RGBA(0,0,0,0.1); /* Firefox */
+					-webkit-box-shadow: 0px 1px 1px RGBA(0,0,0,0.1); /* Safari, Chrome */
+					box-shadow: 0px 1px 1px RGBA(0,0,0,0.1); }
+	.dropdown dt:active  { background:#EEE; }
+
+.dropdown dt a {background:url("../img/icon_down_arrow.gif") no-repeat scroll right center; display:block; padding-right:20px; text-decoration:none; color:#333; }
+.dropdown dt a:hover { text-decoration:none; }
+
+.dropdown dt a span {cursor:pointer; display:block; padding:5px; padding-top:4px; padding-bottom:4px;}
+	.dropdown dt a::-moz-focus-inner { border:0; }
+	.dropdown dt a:focus { outline : none;  }
+
+/* UL styles */
+.dropdown dd ul { -moz-box-shadow: 0px 1px 1px RGBA(0,0,0,0.1); /* Firefox */
+					-webkit-box-shadow: 0px 1px 1px RGBA(0,0,0,0.1); /* Safari, Chrome */
+					box-shadow: 0px 1px 1px RGBA(0,0,0,0.1); }
+
+.dropdown dd ul { max-height:200px; overflow-x:hidden; overflow-y: auto; background:#F8F8F8 none repeat scroll 0 0; border:1px solid #ADADAD; display:none; list-style:none; padding:0px; position:absolute;  left:-66px; top:-1px; width:auto; min-width:120px;}
+.dropdown span.value { display:none;}
+.dropdown dd ul li a { padding:5px; padding-left:10px; display:block; text-decoration:none; color:#333; }
+.dropdown dd ul li a:hover { background-color:#EEE; }
+
+.dropdown dd ul li a .count { color:#999; margin-left:5px; }
+
+.dropdown dd ul li.depth_0 a { border-bottom:1px solid #eee; }
+.dropdown dd ul li.first_parent a {  border-top:1px solid #eee; }
+
+.dropdown dd ul li.depth_1 a { }
+.dropdown dd ul li.depth_2 a { }
+.dropdown dd ul li.depth_3 a { }
+.dropdown dd ul li.depth_4 a { }
+
+.dropdown dd ul li.have_child a,
+.dropdown dd ul li.category_last a { border-bottom:0; }
+
+/* focus dotted line */
+/*for FireFox*/
+.dropdown dd ul li a::-moz-focus-inner {   
+	border : 0px;
+} 
+/*for IE8 */
+.dropdown dd ul li a:focus {     
+     outline : none; 
+}
+
+.dropdown dd ul li a[disabled] { color:#aaa; text-shadow: 0 0 1px #FFFFFF; }
+.dropdown dd ul li a[disabled]:hover { background:#F8F8F8; }
