@@ -1,4 +1,5 @@
-/* for dropdown ui */
+/* 분류 기능을 위한 Javascript */
+
 var lastDropdown = null;
 var lastDropdownTitle = null;
 function dropdownEvent(parent) {
@@ -73,7 +74,7 @@ function closeEvent(obj) {
 
 jQuery(function() {
 	jQuery(".dropdown").parent().parent().css('overflow','visible');
-	/* dropdown */
+
 	dropdownEvent(document);
 	dropdownCloseEvent();
 });
