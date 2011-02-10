@@ -158,7 +158,7 @@ fieldset{ border:0; padding:0; margin:0;}
 	#content .guestbook .reply { border-top:1px solid #eee; margin-top:4px; background:none;  }
 	#content .guestbook .replyForm { padding-top:14px; border-top:1px solid #CCCCCC; margin-top:14px; }
 	
-#content .usedTag{ *zoom:1; font-size:11px; padding-top:12px; background:url(img/bg_article_line.gif) no-repeat top left; }
+#content .usedTag{ *zoom:1; font-size:11px; padding-top:20px; background:url(img/bg_article_line.gif) no-repeat top left; }
 #content .usedTag:after{ content:""; display:block; clear:both;}
 #content .usedTag dt{ display:table-cell; *float:left; color:#666;}
 #content .usedTag dd{ display:table-cell; *float:left; color:#8b8b8b; padding-left:5px;}

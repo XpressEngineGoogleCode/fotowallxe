@@ -9,7 +9,7 @@
 		{@ $lastDepth = 0; }
 		<!--@foreach($category_list as $key => $val)-->
 		<li class="depth_{$val->depth} <!--@if($val->last)-->category_last<!--@end--> <!--@if($val->expand)-->category_on<!--@else-->category_off<!--@end--> <!--@if($category==$val->category_srl)-->selected<!--@end--> <!--@if($val->child_count>0)-->have_child<!--@end--> <!--@if($val->depth==0 && $lastDepth !=0)-->first_parent<!--@end-->" id="category_parent_{$val->category_srl}">
-		<a href="{getUrl('category_srl',$val->category_srl,'document_srl','','cpage','')}">{$val->text}<!--@if($val->document_count)--><span class="count">({$val->document_count})</span><!--@end--></a>
+		<a href="{getUrl('category',$val->category_srl,'document_srl','','cpage','')}">{$val->text}<!--@if($val->document_count)--><span class="count">({$val->document_count})</span><!--@end--></a>
 		</li>
 		{@ $lastDepth = $val->depth;}
 		<!--@end-->
