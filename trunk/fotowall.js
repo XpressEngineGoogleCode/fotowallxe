@@ -1,3 +1,11 @@
+function autoToolSize(width) {
+	if(width < 480 || full_width < 480) {
+		jQuery(".trackbackURL dt").hide();
+	} else {
+		jQuery(".trackbackURL dt").show();
+	}
+}
+
 function sendTwitter(obj, message) {
 //	obj.href = "http://twitter.com/home/?status=" + encodeURIComponent(message);
 	window.open("http://twitter.com/share/?url=" + encodeURIComponent(message) + "", 'twitterSend', 'width=640, height=356');
@@ -46,6 +54,8 @@ jQuery(document).ready(function(){
 		jQuery(window).scroll(function() {
 			scrollSidebar();
 		});
-		scrollSidebar();
+
+		scrollSidebar();	
+		autoToolSize(jQuery(window).width());
 	}
 });

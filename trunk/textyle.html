@@ -1,4 +1,12 @@
 <!--#include("setting_config.html")-->
+<style type="text/css">
+	.width { width: {$full_width}px; margin:0 auto; }
+	.postRow { width:{$column_width}px; margin-right:{$column_margin}px; }
+</style>
+
+<script type="text/javascript">
+	var full_width = "{$full_width}";
+</script>
 
 <!--%import("fotowall.js")-->
 
@@ -18,8 +26,13 @@
 						<input name="search_target" type="hidden" value="title_content" />
 						<fieldset>
 							<legend>{$lang->cmd_search}</legend>
-							<input name="search_keyword" type="text" class="inputText" value="{$search_keyword}" accesskey="S" title="SEARCH" align="absmiddle" />
-							<input type="submit" class="buttonSearch" value="{$lang->cmd_search}" align="absmiddle" />
+							<div class="keyword">
+								<input name="search_keyword" type="text" class="inputText" value="{$search_keyword}" accesskey="S" title="SEARCH" />
+							</div>
+							<div class="submit">
+								<input type="submit" class="buttonSearch" value="{$lang->cmd_search}" />
+							</div>
+							<div class="clear"></div>
 						</fieldset>
 					</form>
 				</div>
@@ -95,19 +108,22 @@
 
 	<div id="footer">         
 
-		<div class="width">
+		<div class="width">		
 			<div class="powered">
+				<div id="admin_menu"><a href="{$admin_url}" class="admin" accesskey="A" title="관리자"><img src="img/icon_admin.png" alt="admin" /></a></div>
+
 				<ul>
 					<li id="profile_menu"<!--@if($act=='dispTextyleProfile')--> class="selected"<!--@end-->><a href="{$profile_url}">프로필</a></li>
 					<li id="guestbook_menu"<!--@if($act=='dispTextyleGuestbook')--> class="selected"<!--@end-->><a href="{$guestbook_url}">방명록</a></li>
                     <!--@foreach($extra_menus as $key => $val)-->
 					<li<!--@if($key==$mid || $val==getUrl('','mid',$mid))--> class="selected"<!--@end-->><a href="{$val}">{$key}</a></li>
-                    <!--@end-->
+                    <!--@end-->	
 					<li id="rss_menu"><a href="{$home_url}rss"><img src="img/icon_rss.png" alt="RSS" /></a></li>
+
 					<div class="clear"></div>
 				</ul>
 
-				<a href="http://fotowall.net"><img src="img/icon_fotowall.png" alt="it's fotowall" /></a>
+				<a href="http://fotowall.net" target="_blank"><img src="img/icon_fotowall.png" alt="it's fotowall" /></a>
 			</div>
 		</div>
 	</div>
