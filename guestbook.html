@@ -1,4 +1,9 @@
-                    <h2 class="postTitle">GuestBook <em>{$page_navigation->total_count}</em></h2>
+		<div class="guestbook">
+					<!--@if($page_navigation->total_count)-->
+					<h2 class="postTitle">방명록에 <span class="point">{$page_navigation->total_count}</span>개의 글이 있습니다.</h2>
+					<!--@else-->
+					<h2 class="postTitle">첫번째로 방명록에 글을 남기실 수 있습니다.</h2>
+					<!--@end-->
 
                     <!--@if(!$reply && !$modify)-->
                     <div class="replyForm">
@@ -11,11 +16,11 @@
                                 <!--@if($is_logged)-->
 								<span class="member_{$logged_info->member_srl}"><strong class="name">{$logged_info->nick_name}</strong></span> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
                                 <!--@else-->
-                                <input name="nick_name" type="text" class="inputText name" value="Name" title="Name"/>
-                                <input name="password" type="password" class="inputText pw" value="Password" title="Password" />
+                                <input name="nick_name" type="text" class="inputText name" value="Name" title="이름"/>
+                                <input name="password" type="password" class="inputText pw" value="Password" title="비밀번호" />
 								<!--@if($textyle->getInputEmail()!='N')-->
 									<input type="hidden" name="msg_input_email_address" value="{$lang->msg_input_email_address}"/>
-									<input name="email_address" type="text" class="inputText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
+									<input name="email_address" type="text" class="inputText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="이메일 주소" />
 								<!--@end-->
 								<!--@if($textyle->getInputWebsite()!='N')-->
 									<input type="hidden" name="msg_input_homepage" value="{$lang->msg_input_homepage}"/>
@@ -24,7 +29,7 @@
                                <!--@end-->
                                 <input name="is_secret" id="secret1" type="checkbox" value="Y" class="inputCheck" />
                                 <label for="secret1">{$lang->secret}</label>
-                                <input name="submit" type="submit" value="SUBMIT" class="inputSubmit" />
+                                <input name="submit" type="submit" value="등록" class="inputSubmit" />
                             </fieldset>
                         </form>
                         <!--@else-->
@@ -172,4 +177,4 @@
                         </ol>
                         <!--@end-->
                     </div>
-
+		</div>

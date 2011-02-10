@@ -1,20 +1,18 @@
 {@
 	$count = count($document_list);
-	$row_count = 4;
-
 	$now = 0;
 }
 
 <!--@if($count>0)-->
 {@
 	$index = 0;
-	$lastIndex = round($count / $row_count);
-	if($count % $row_count != 0) $lastIndex ++;
+	$lastIndex = round($count / $column_count);
+	if($count % $column_count != 0) $lastIndex ++;
 
 	$new_document_list = array(); 
-	for($i=0;$i<$row_count;$i++) $new_document_list[$i] = array();
+	for($i=0;$i<$column_count;$i++) $new_document_list[$i] = array();
 }
-	<!--@for($start=0;$start<$row_count;$start++)-->
+	<!--@for($start=0;$start<$column_count;$start++)-->
 		{@
 			$i = $start;
 			$to = $lastIndex;
@@ -26,7 +24,7 @@
 					array_push($new_document_list[$start], $d[0]); 
 				}
 			<!--@end-->
-			{@ $i += $row_count; }
+			{@ $i += $column_count; }
 		<!--@end-->
 	<!--@end-->
 	{@
@@ -36,16 +34,25 @@
 
 
 <!--@foreach($document_list as $no=>$document_items)-->
-	<div class="postRow<!--@if($no==$row_count-1)--> postRowEnd<!--@end-->">	
+	<div class="postRow<!--@if($no==$column_count-1)--> postRowEnd<!--@end-->">	
 	<!--@foreach($document_items as $document)-->
-		<div class="postWrap">
-			<!--@if($document->thumbnailExists())-->
-			<div class="thumbnail"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}"><img src="{$document->getThumbnail(175,0,'ratio')}" class="summaryThumb" alt="" /></a></div>
-			<!--@end-->
+		<div class="postWrap <!--@if($document->thumbnailExists())-->haveThumbnail<!--@else-->dontHaveThumbnail<!--@end-->"  <!--@if($column_height!='auto')-->style="height:{$column_height}px"<!--@end-->>
+			<div class="postData">
+				<!--@if($document->thumbnailExists())-->
+					<!--@if($column_thumbnail != 'ratio')-->
+						<div class="thumbnail"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}"><img src="{$document->getThumbnail(175,$column_thumbnail,'crop')}" class="summaryThumb" alt="" /></a></div>
+					<!--@else-->
+						<div class="thumbnail"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}"><img src="{$document->getThumbnail(175,0,'ratio')}" class="summaryThumb" alt="" /></a></div>
+					<!--@end-->
+				<!--@end-->
 
-			<h2 class="postTitle"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{cut_str($document->getTitle(),40)}</a></h2>
-			<div class="postContent">
-				{$document->getSummary(600)}
+				<h2 class="postTitle"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{cut_str($document->getTitle(),40)}</a></h2>
+				{@ $summary = $document->getSummary($column_cut_content)}
+				<!--@if(!empty($summary))-->
+				<div class="postContent">
+					{$summary}
+				</div>
+				<!--@end-->
 			</div>
 		</div>
 	<!--@end-->

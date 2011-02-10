@@ -1,3 +1,7 @@
+<!--#include("setting_config.html")-->
+
+<!--%import("fotowall.js")-->
+
 <div id="xe" class="fixed">
 	<div id="hidden_area">
 		<div id="top">
@@ -22,16 +26,24 @@
 			</div>
 		</div> <!-- top -->
 		
+		<!-- test
 		<div id="down_button_area" class="width">		
 			<div class="button">
 				<img src="img/icon_search.png" alt="{$lang->cmd_search}}" /><br />
 			</div>
-		</div> <!-- down_button_area -->
+		</div>
+		--> <!-- down_button_area -->
 	</div> <!-- hidden_area -->
 
 	<div id="container">
 		<div id="header" class="width">
 			<h1><a href="{$home_url}">{$textyle_title}</a><!--@if(!empty($textyle_content))--><span class="sep">/</span> <span class="summary">{$textyle_content}</span><!--@end--></h1>
+
+			<div class="category">	
+				<img class="zbxe_widget_output" widget="category" skin="fotowall" total_title="{$lang->view_all}"  srl="{$textyle->module_srl}" />
+			</div>
+
+			<div class="clear"></div>
 		</div>
 
         <div id="body" class="width">
@@ -40,8 +52,10 @@
                     {$content}
                 <!--// Profile -->
                 <!--@elseif($textyle_mode == 'profile')-->
-                    <h2 class="postTitle">Profile</h2>
+				<div class="profileWrap">
+                    <h2 class="postTitle">프로필</h2>
                     <div class="textyleContent xe_content">{$profile_content}</div>
+				</div>
                 <!--// GuestBook -->
                 <!--@else if($textyle_mode == 'guestbook')-->
 					<!--#include('guestbook.html')-->
@@ -63,7 +77,7 @@
 					<!--#include('post.list.html')-->
                 <!--@end-->
 
-                <!--// display pagenavigation -->
+				<!--// display pagenavigation -->
                 <!--@if($page_navigation && $textyle_mode != 'module')-->
                 <div id="paging">
                     <!--@while($page_no = $page_navigation->getNextPage())-->
@@ -73,15 +87,26 @@
 						<a href="{getUrl('page',$page_no,'document_srl','','entry','')}">{$page_no}</a>
 						<!--@end-->
                     <!--@end-->
-                </div>
+                </div> <!-- paging -->
                 <!--@end-->
             </div>
         </div>
 	</div>
 
-	<div id="footer">
+	<div id="footer">         
+
 		<div class="width">
 			<div class="powered">
+				<ul>
+					<li id="profile_menu"<!--@if($act=='dispTextyleProfile')--> class="selected"<!--@end-->><a href="{$profile_url}">프로필</a></li>
+					<li id="guestbook_menu"<!--@if($act=='dispTextyleGuestbook')--> class="selected"<!--@end-->><a href="{$guestbook_url}">방명록</a></li>
+                    <!--@foreach($extra_menus as $key => $val)-->
+					<li<!--@if($key==$mid || $val==getUrl('','mid',$mid))--> class="selected"<!--@end-->><a href="{$val}">{$key}</a></li>
+                    <!--@end-->
+					<li id="rss_menu"><a href="{$home_url}rss"><img src="img/icon_rss.png" alt="RSS" /></a></li>
+					<div class="clear"></div>
+				</ul>
+
 				<a href="http://fotowall.net"><img src="img/icon_fotowall.png" alt="it's fotowall" /></a>
 			</div>
 		</div>

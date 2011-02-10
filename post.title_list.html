@@ -1,24 +1,35 @@
-                    <h2 class="postTitle">
+              <div class="postTitleList">
+					<h2 class="postTitle">
                         <!--@if($search_keyword)-->
-                            {$lang->search_result} <em> '{$page_navigation->total_count}'</em>
+                            <span class="point">{$page_navigation->total_count}</span>개의 사진(글)이 검색되었습니다.</em>
                         <!--@elseif($category)-->
-                            {$lang->category_result} <em> '{$selected_category} ({$page_navigation->total_count})'</em>
+                            <span class="point">{$selected_category}</span> 분류에 <span class="point">{$page_navigation->total_count}</span>개의 사진(글)이 있습니다.
                         <!--@else-->
-                            {$lang->view_all} <em> '{$page_navigation->total_count}'</em>
+                            <span class="point">{$page_navigation->total_count}</span>개의 사진(글)이 있습니다.
                         <!--@end-->
                     </h2>
                     <ul class="searchResult xe_content">
                         <!--@foreach($document_list as $no => $document)-->
                         <li>
-                            <!--@if($document->document_srl==$document_srl)-->
-                            <strong>
-                            <!--@end-->
-                            <a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}">{$document->getTitle()}</a>
-                            <!--@if($document->document_srl==$document_srl)-->
-                            </strong>
-                            <!--@end-->
-                            <span class="date">{zdate($document->get('last_update'),'Y.m.d')}</span>
+							 <!--@if($document->thumbnailExists())-->            
+							<div class="thumbnail">
+								 <p class="postThumbnail"><a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}"><img src="{$document->getThumbnail(120,80,'crop')}" class="thumbnail" alt="" /></a></p>
+							</div>
+							 <!--@end-->
+
+                            <div class="data">
+								<div class="postTitle"><a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}">{$document->getTitle()}</a></div>
+								{@ $summary = $document->getSummary(100)}
+								<!--@if(!empty($summary))-->
+								<div class="postContent">
+									{$summary}
+								</div>
+								<!--@end-->
+								<span class="date">{zdate($document->get('last_update'),'Y.m.d')}</span>
+							</div>
+
+							<div class="clear"></div>
                         </li>
                         <!--@end-->
                     </ul>
-
+			</div>

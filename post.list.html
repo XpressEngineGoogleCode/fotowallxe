@@ -1,26 +1,38 @@
-	<!--%import("fotowall.js")-->
 
-	<!--@foreach($document_list as $document)-->
+<!--@foreach($document_list as $document)-->
 	<div class="content">
 		 <div class="extra autoscroll">
 			<div class="date">{$document->getRegdate('Y m.d')}</div>
 			<!--@if($document->get('category_srl'))-->
-				<div class="category">{$category_list[$document->get('category_srl')]->title}</div>
+				<div class="category"><a href="{getUrl('category_srl',$document->get('category_srl'),'document_srl','','cpage','')}">{$category_list[$document->get('category_srl')]->title}</a></div>
 			<!--@end-->
 			<div class="author">{$document->getNickName()}</div>
 			<div class="edit"><a href="{getSiteUrl($textyle->domain,'document_srl',$document->document_srl,'act','dispTextyleToolPostManageWrite')}" class="editPost"><img src="img/icon_pen.png" alt="Edit" /></a></div>
 		 </div>
 
-		 <!--@if($document->thumbnailExists())-->            
-			 <p class="thumbnail"><img src="{$document->getThumbnail(820,0,'ratio')}" class="thumbnail" alt="" /></p>
+		 <!--#include('setting_get_thumbnail.html')-->
+
+		 <!--@if(count($thumbnailList) > 0)-->            
+			 <div class="postThumbnail">
+				{@ $i = 0; }
+				<!--@foreach($thumbnailList as $thumbnail)-->
+					{@ $i ++; }
+					<div class="postThumbnailItem postThumbnailItem_{$i}">
+						<img src="{$thumbnail}" class="thumbnail" alt="" <!--@if($thumbnail_auto_resize)-->width="820"<!--@end--> />
+					</div>
+				<!--@end-->
+			</div>
 		 <!--@end-->
 		
 		<div class="postWrap">
+			<!--@if($share)-->
+				<div class="share"><a href="#" title="트위터에 공유하기" onclick="return sendTwitter(this,'{getFullSiteUrl() . $document->document_srl}');"><img src="img/twitter.png" alt="twitter" /></a> <a href="#" title="페이스북에 공유하기" onclick="return sendFacebook(this,'{getFullSiteUrl() . $document->document_srl}');"><img src="img/facebook.png" alt="facebook" /></a></div>
+			<!--@end-->
 				<h2 class="postTitle"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{$document->getTitle()}</a></h2>
 				
 				<div class="textyleContent xe_content">
 					{$post_prefix}
-					{strip_tags($document->getContent(false),'<span><br>')} <!-- fotowall style -->
+					{$document->getContent(false)} 
 					{$post_suffix}
 				</div>
 
@@ -40,17 +52,6 @@
 				<!--@end-->
 			<div class="clear"></div>
 		</div> <!-- postWrap -->
-		
-		<!--@if($prev_document || $next_document)-->
-		<div class="pagination">
-			<!--@if($prev_document)-->
-				<span class="prev">이전 : <a href="{getUrl('document_srl',$prev_document->document_srl)}" class="prev">{$prev_document->getTitle()}</a></span>
-			<!--@end-->
-			<!--@if($next_document)-->
-				<span class="next">다음 : <a href="{getUrl('document_srl',$next_document->document_srl)}" class="next">{$next_document->getTitle()}</a></span>
-			<!--@end-->
-		</div>
-		<!--@end-->
 
 		<!--@if($document->allowTrackback() || $document->getTrackbackCount())-->
 		<a name="trackback"></a>
@@ -196,11 +197,11 @@
 					<!--@if($is_logged)-->
 					<span class="member_{$logged_info->member_srl}"><strong class="name">{$logged_info->nick_name}</strong></span> <span class="email">{$logged_info->email_address}</span> <span class="url">{$logged_info->homepage}</span>
 					<!--@else-->
-					<input name="nick_name" type="text" class="inputText name" value="Name" title="Name"/>
-					<input name="password" type="password" class="inputText pw" value="Password" title="Password" />
+					<input name="nick_name" type="text" class="inputText name" value="Name" title="이름"/>
+					<input name="password" type="password" class="inputText pw" value="Password" title="비밀번호" />
 					<!--@if($textyle->getInputEmail()!='N')-->
 						<input type="hidden" name="msg_input_email_address" value="{$lang->msg_input_email_address}"/>
-						<input name="email_address" type="text" class="inputText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="Email address" />
+						<input name="email_address" type="text" class="inputText email<!--@if($textyle->getInputEmail()=='R')--> request<!--@end-->" value="Email address" title="이메일 주소" />
 					<!--@end-->
 					<!--@if($textyle->getInputWebsite()!='N')-->
 						<input type="hidden" name="msg_input_homepage" value="{$lang->msg_input_homepage}"/>
@@ -217,5 +218,17 @@
 			<!--@end-->
 		</div>
 	<!--@end-->
+
+			
+		<!--@if($prev_document || $next_document)-->
+		<div class="pagination">
+			<!--@if($prev_document)-->
+				<span class="prev">이전 : <a href="{getUrl('document_srl',$prev_document->document_srl)}" class="prev">{$prev_document->getTitle()}</a></span>
+			<!--@end-->
+			<!--@if($next_document)-->
+				<span class="next">다음 : <a href="{getUrl('document_srl',$next_document->document_srl)}" class="next">{$next_document->getTitle()}</a></span>
+			<!--@end-->
+		</div>
+		<!--@end-->
 	</div> <!-- content -->
 <!--@end-->
