@@ -10,7 +10,7 @@
                     </h2>
                     <ul class="searchResult xe_content">
                         <!--@foreach($document_list as $no => $document)-->
-                        <li>
+                        <li class="<!--@if($document->thumbnailExists())-->haveThumbnail<!--@else-->dontHaveThumbnail<!--@end-->">
 							 <!--@if($document->thumbnailExists())-->            
 							<div class="thumbnail">
 								 <p class="postThumbnail"><a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}"><img src="{$document->getThumbnail(120,80,'crop')}" class="thumbnail" alt="" /></a></p>
@@ -27,8 +27,6 @@
 								<!--@end-->
 								<span class="date">{zdate($document->get('last_update'),'Y.m.d')}</span>
 							</div>
-
-							<div class="clear"></div>
                         </li>
                         <!--@end-->
                     </ul>
