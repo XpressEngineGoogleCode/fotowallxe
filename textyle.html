@@ -1,5 +1,5 @@
 <!--#include("setting_config.html")-->
-
+<!-- // config 상에서 설정한 설정값을 위해 css 나 js 외에 이 곳에서 값을 대입해주는게 필요함 -->
 <style type="text/css">
 	.width { width: {$full_width}px; margin:0 auto; }
 	.postRow { width:{$column_width}px; margin-right:{$column_margin}px; }
@@ -11,7 +11,7 @@
 
 <!--%import("js/fotowall.js")-->
 
-<div id="xe" class="fixed">
+<div id="xe">
 	<div id="hidden_area">
 		<div id="top">
 			<div class="width">
@@ -26,12 +26,12 @@
 						<input name="act" type="hidden" value="dispTextyle" />
 						<input name="search_target" type="hidden" value="title_content" />
 						<fieldset>
-							<legend>{$lang->cmd_search}</legend>
+							<legend>검색</legend>
 							<div class="keyword">
 								<input name="search_keyword" type="text" class="inputText" value="{$search_keyword}" accesskey="S" title="SEARCH" />
 							</div>
 							<div class="submit">
-								<input type="submit" class="buttonSearch" value="{$lang->cmd_search}" />
+								<input type="submit" class="buttonSearch" value="검색" />
 							</div>
 							<div class="clear"></div>
 						</fieldset>
@@ -40,10 +40,10 @@
 			</div>
 		</div> <!-- top -->
 		
-		<!-- test
+		<!-- // 상단의 자동 숨김 시스템을 위한 테스트 삽입
 		<div id="down_button_area" class="width">		
 			<div class="button">
-				<img src="img/icon_search.png" alt="{$lang->cmd_search}}" /><br />
+				<img src="img/icon_search.png" alt="검색" /><br />
 			</div>
 		</div>
 		--> <!-- down_button_area -->
@@ -51,9 +51,11 @@
 
 	<div id="container">
 		<div id="header" class="width">
+			<!-- // 한줄소개(textyle_content) 는 현재 시스템에서 치환되지 않는 듯 함 -->
 			<h1><a href="{$home_url}">{$textyle_title}</a><!--@if(!empty($textyle_content))--><span class="sep">/</span> <span class="summary">{$textyle_content}</span><!--@end--></h1>
-
+			
 			<div class="category">	
+				<!-- // fotowall 스타일의 분류 항목 -->
 				<!--#include("setting_get_category.html")-->
 			</div>
 
@@ -103,12 +105,11 @@
                     <!--@end-->
                 </div> <!-- paging -->
                 <!--@end-->
-            </div>
-        </div>
+            </div> <!-- content -->
+        </div> <!-- body -->
 	</div>
 
-	<div id="footer">         
-
+	<div id="footer">      
 		<div class="width">		
 			<div class="powered">
 				<div id="admin_menu"><a href="{$admin_url}" class="admin" accesskey="A" title="관리자"><img src="img/icon_admin.png" alt="admin" /></a></div>
@@ -127,5 +128,4 @@
 			</div>
 		</div>
 	</div>
-
 </div>

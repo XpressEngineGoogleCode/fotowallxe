@@ -36,7 +36,7 @@
 <!--@foreach($document_list as $no=>$document_items)-->
 	<div class="postRow<!--@if($no==$column_count-1)--> postRowEnd<!--@end-->">	
 	<!--@foreach($document_items as $document)-->
-		<div class="postWrap <!--@if($document->thumbnailExists())-->haveThumbnail<!--@else-->dontHaveThumbnail<!--@end-->"  <!--@if($column_height!='auto')-->style="height:{$column_height}px"<!--@end-->>
+		<div class="postWrap <!--@if($document->thumbnailExists())-->haveThumbnail<!--@else-->dontHaveThumbnail<!--@end-->"  <!--@if($column_thumbnail_height!='auto')-->style="height:{$column_thumbnail_height}px"<!--@end-->>
 			<div class="postData">
 				<!--@if($document->thumbnailExists())-->
 					<!--@if($column_thumbnail != 'ratio')-->

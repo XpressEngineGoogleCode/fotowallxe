@@ -15,10 +15,8 @@ fieldset{ border:0; padding:0; margin:0;}
 .inputCheck{ width:13px; height:13px;}
 .inputRadio{ width:13px; height:13px;}
 
-/* fotowall style */
 
 /* Layout */
-
 #hidden_area { background:#f6f6f6; }
 #container { background:#f6f6f6; padding-top:20px; }
 	#header{}
@@ -44,6 +42,7 @@ fieldset{ border:0; padding:0; margin:0;}
 	#down_button_area .button { position:absolute; right:0; top:0; padding-top:4px; height:30px; width:30px;  background:url('img/icon_gray_down_arrow.gif') no-repeat center 26px #000; text-align:center; }
 
 /* * Header */
+
 #header a{ text-decoration:none;}
 #header a:hover,
 #header a:active,
