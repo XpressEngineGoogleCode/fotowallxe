@@ -1,4 +1,22 @@
+function sendTwitter(obj, message) {
+//	obj.href = "http://twitter.com/home/?status=" + encodeURIComponent(message);
+	window.open("http://twitter.com/share/?url=" + encodeURIComponent(message) + "", 'twitterSend', 'width=640, height=356');
+	return false;
+}
+
+function sendFacebook(obj, link) {
+	window.open("http://www.facebook.com/sharer.php?u=" + encodeURIComponent(link) + "&src=sp", 'facebookSend', 'width=500, height=356');
+	return false;
+}
+
+function sendYozm(obj, message, link) {
+	window.open("http://yozm.daum.net/api/popup/prePost?link="+link+"&prefix="+encodeURIComponent(message), 'yozmSend', 'width=500, height=356');
+	return false;
+}	
+
 jQuery(document).ready(function(){	
+	dropdownEvent(document);
+
 	if(jQuery(".autoscroll").length > 0) {	
 			var lastTo = 0;
 			function scrollSidebar() {	

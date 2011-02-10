@@ -1,0 +1,59 @@
+{@
+	$thumbnailList = array();
+	$thumbnailInContentList = array();
+
+	$workList = array();
+
+	$width = 820;
+	$height = 'auto';
+	$thumbnail_type = 'ratio';
+}
+<!--@if(isset($document))-->
+{@	
+	$thumbnail_path = sprintf('files/cache/thumbnails/%s',getNumberingPath($document->document_srl, 3));
+}
+	
+	{@
+		$content = $document->get('content');
+        $target_src = null;
+        preg_match_all("!src=(\"|')([^\"' ]*?)(\"|')!is", $content, $matches, PREG_SET_ORDER);
+        $cnt = count($matches);
+	}
+    
+	<!--@for($i=0;$i<$cnt;$i++)-->
+		{@
+          $target_src = trim($matches[$i][2]);
+          if(preg_match("/\.(jpg|png|jpeg|gif|bmp)$/i",$target_src)) array_push($thumbnailInContentList, './'.$target_src);
+		}
+	<!--@end-->
+
+	<!--@if($document->get('uploaded_count'))-->
+		{@
+			$oFileModel = &getModel('file');
+			$file_list = $oFileModel->getFiles($document->document_srl);
+		}
+		<!--@if(count($file_list))-->
+			<!--@foreach($file_list as $file)-->
+				<!--@if($file->direct_download!='Y')-->
+				<!--@else if(!preg_match("/\.(jpg|png|jpeg|gif|bmp)$/i",$file->source_filename))-->
+				<!--@else-->
+				{@
+					$source_file = $file->uploaded_filename;
+					if(!file_exists($source_file)) $source_file = null;
+					if($source_file && !in_array($source_file,$thumbnailInContentList)) array_push($workList, array('srl'=>$file->file_srl,'file'=>$source_file));
+				}
+				<!--@end-->
+			<!--@end-->
+		<!--@end-->
+	<!--@end-->
+
+	<!--@foreach($workList as $work)-->
+			{@
+				$thumbnail_file = sprintf('%sfotowall_%d_%dx%d.%s.jpg', $thumbnail_path, $work['srl'], $width, $height, $thumbnail_type);
+				$thumbnail_url  = Context::getRequestUri().$thumbnail_file;
+
+			    $output = FileHandler::createImageFile($work['file'], $thumbnail_file, $width, $height, 'jpg', $thumbnail_type);
+				if($output) array_push($thumbnailList, $thumbnail_url );
+			}
+	<!--@end-->
+<!--@end-->
