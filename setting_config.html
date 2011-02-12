@@ -1,7 +1,8 @@
 {@
 	// 사용자 설정을 위한 설정 값들 ..
 
-	
+	$simple_mode = true; // simplemode = 댓글, 트랙백을 사용하지 않는 아주 심플한 모양을 나타낼때 사용함
+
 	$column_width = 175; // 컬럼의 너비
 	$column_margin = 40; // 컬럼의 높이
 
@@ -9,14 +10,17 @@
 	$column_thumbnail = 'ratio'; // 컬럼의 썸네일 방식 'ratio' : 가로 기준 자동 조절, '숫자' : 높이로 자르기
 	$column_height = 'auto'; // 컬럼의 썸네일 높이 방식 'auto' : 높이 자동조절, '숫자' :  높이로 고정 ( * 높이 고정시 썸네일 역시 높이 조절 필요 )
 
-	$column_cut_content = 0; // 컬럼에 표시되는 본문의 글자 수 : 0 이면 자르지 않음
+	$column_cut_content = 0; // 컬럼에 표시되는 본문의 글자 수 : 0 이면 자르지 않음. -1 이면 보이질 않음
 	
 	$share = true; // 공유하기 기능 (트위터, 페이스북)
 	$thumbnail_auto_resize = true; // 사진(글) 보기일 때 갤러리의 썸네일을 자동으로 너비를 맞추는지 결정 : 'true' : 너비를 강제 조절, 'false' : 너비를 그대로.. 가운데 정렬
 
 	// -- 여기서 부터는 수정하지 말아주세요
 	$full_width = (($column_width + $column_margin) * $column_count) - $column_margin;
-
-	// -- 미 완성 TODO : darken color set 지원 예정
+	
+	// TODO : darken 컬러셋 지원 예정
 	$style = 'light'; // light 또는 darken;
+	// TODO : 갤러리 모드 지원 예정
+	$use_gallery = false; // 갤러리 사용
+
 }

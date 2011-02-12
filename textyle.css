@@ -36,7 +36,7 @@ fieldset{ border:0; padding:0; margin:0;}
 		#top #search_wrap .submit { float:left; }
 
 		#top #search_wrap .inputText { border:0; height:17px; }
-		#top #search_wrap .buttonSearch { border:0; font-size:11px; height:19px; padding-top:1px; padding-bottom:2px; }
+		#top #search_wrap .buttonSearch { border:0; font-size:11px; height:19px; padding-top:1px; padding-bottom:2px; cursor:pointer; }
 		#top #search_wrap .buttonSearch:active {}
 
 #down_button_area { height:34px; position:relative; }
@@ -49,20 +49,21 @@ fieldset{ border:0; padding:0; margin:0;}
 #header a:active,
 #header a:focus{ text-decoration:none; }
 
-#header h1{ float:left; font-weight:bold; margin:0; padding:0; margin-bottom:20px; font-size:18px;}
+#header h1{ float:left; font-weight:bold; margin:0; padding:0; margin-bottom:20px; font-size:16px;}
+	#header h1 a:hover { text-decoration:underline; }
 	#header .category { float:right; margin-left:20px; }
 		#header .category .dropdown { margin-top:0; }
 
 
 /* * Footer */
-#footer {}
+#footer { font-size:11px; }
 
 #footer a{ text-decoration:none;}
 #footer a:hover,
 #footer a:active,
 #footer a:focus{ text-decoration:underline;}
 
-#footer .powered { position:relative; padding-bottom:20px; padding-top:20px; text-align:right; }
+#footer .powered { position:relative; padding-bottom:20px; padding-top:20px; text-align:right; font-size:11px; }
 	#footer .powered #admin_menu { position:absolute; right:-30px; top:18px; -moz-opacity:.20; filter:alpha(opacity=20); opacity:.20; }
 	#footer .powered #admin_menu:hover { -moz-opacity:1; filter:alpha(opacity=100); opacity:1; }
 
@@ -80,12 +81,15 @@ fieldset{ border:0; padding:0; margin:0;}
 
 		#content .content .extra .category,
 		#content .content .extra .author { padding-top:6px; margin-top:6px; }
-		#content .content .extra .edit { margin-top:10px; }
+		#content .content .extra .edit { margin-top:4px; }
 
 		#content .content .extra a { text-decoration:none; }
 		#content .content .extra a:hover { text-decoration:underline; }	
 
 #content .postThumbnail { margin-bottom:10px; }
+	#content .postThumbnail ul { list-style:none; margin:0; padding:0; }
+	#content .postThumbnail ul li {}
+
 	#content .postThumbnail .postThumbnailItem { margin-top:10px;  text-align:center; }
 	#content .postThumbnail .postThumbnailItem_0 { margin-top:0; }
 	
@@ -104,11 +108,15 @@ fieldset{ border:0; padding:0; margin:0;}
 #content .postRow { float:left; }
 #content .postRowEnd { margin-right:0; }
 
-#content .postRow .postWrap { margin-bottom:20px; padding-bottom:10px; overflow:hidden; }
+#content .postRow .postWrap { margin-bottom:20px; padding-bottom:10px; }
 	#content .postRow .postWrap:last-child { border-bottom:0; }
 
 	#content .postRow .postWrap .postTitle { font-size:12px; margin-top:10px; margin-bottom:4px; width:100%; }
 	#content .postRow .postWrap .postContent { font-size:11px; padding-bottom:10px; }
+
+#content .postRow .postData .thumbnail {}
+	#content .postRow .postData .thumbnail a:hover img { -moz-opacity:.80; filter:alpha(opacity=80); opacity:.80; }
+
 
 #content .postRow .dontHaveThumbnail { border-bottom:1px solid transparent; margin-bottom:20px; }
 	#content .postRow .dontHaveThumbnail .postData  { padding:10px; border-bottom:0; }
@@ -171,8 +179,15 @@ fieldset{ border:0; padding:0; margin:0;}
 #content .profileWrap { padding-bottom:10px; }
 	#content .profileWrap .postTitle { font-size:14px; padding-bottom:10px; margin-right:0; margin-bottom:0; }
 
+.action_wrap { padding-bottom:10px; }
+	.action_wrap a { text-decoration:underline; }
+	.action_wrap a:hover { text-decoration:underline; }
+
+.trackback_wrap { }
+.comment_wrap { }
+
 /* Feedback */
-.feedback{ position:relative; margin-top:20px; margin-bottom:20px; padding-top:20px;;}
+.feedback{ position:relative; margin-top:20px; margin-bottom:20px; padding-top:20px; }
 .feedback .feedbackTitle{ height:19px; overflow:hidden; font-size:12px; margin-top:0; padding-bottom:6px; }
 
 .feedback .feedbackOrder{ position:relative; margin:0; padding:0; *zoom:1;}
@@ -331,7 +346,7 @@ fieldset{ border:0; padding:0; margin:0;}
 	#paging .interword { padding:5px; padding-left:8px;  }
 
 /* textyleContent */
-.textyleContent{ font-size:12px; line-height:1.6; clear:both;}
+.textyleContent{ font-size:12px; line-height:1.6; clear:both; padding-bottom:10px; }
 .textyleContent h1{ font-size:24px;}
 .textyleContent h2{ font-size:20px;}
 .textyleContent h3{ font-size:18px;}
