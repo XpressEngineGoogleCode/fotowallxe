@@ -39,19 +39,23 @@
 		<div class="postWrap <!--@if($document->thumbnailExists())-->haveThumbnail<!--@else-->dontHaveThumbnail<!--@end-->"  <!--@if($column_height!='auto')-->style="height:{$column_height}px"<!--@end-->>
 			<div class="postData">
 				<!--@if($document->thumbnailExists())-->
+					<div class="thumbnail">
 					<!--@if($column_thumbnail != 'ratio')-->
-						<div class="thumbnail"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}"><img src="{$document->getThumbnail(175,$column_thumbnail,'crop')}" class="summaryThumb" alt="" /></a></div>
+						<a href="{getUrl('document_srl',$document->document_srl,'cpage','')}"><img src="{$document->getThumbnail(175,$column_thumbnail,'crop')}" class="summaryThumb" alt="" /></a>
 					<!--@else-->
-						<div class="thumbnail"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}"><img src="{$document->getThumbnail(175,0,'ratio')}" class="summaryThumb" alt="" /></a></div>
+						<a href="{getUrl('document_srl',$document->document_srl,'cpage','')}"><img src="{$document->getThumbnail(175,0,'ratio')}" class="summaryThumb" alt="" /></a>
 					<!--@end-->
+					</div>
 				<!--@end-->
 
 				<h2 class="postTitle"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{cut_str($document->getTitle(),40)}</a></h2>
+				<!--@if($column_cut_content>=0)-->
 				{@ $summary = $document->getSummary($column_cut_content)}
 				<!--@if(!empty($summary))-->
 				<div class="postContent">
 					{$summary}
 				</div>
+				<!--@end-->
 				<!--@end-->
 			</div>
 		</div>
