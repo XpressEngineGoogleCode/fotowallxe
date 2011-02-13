@@ -4,7 +4,7 @@
 
 	$workList = array();
 
-	$width = 820;
+	$width = $full_width;
 	$height = 'auto';
 	$thumbnail_type = 'ratio';
 }
@@ -52,8 +52,9 @@
 			{@
 				$thumbnail_file = sprintf('%sfotowall_%d_%dx%d.%s.jpg', $thumbnail_path, $work['srl'], $width, $height, $thumbnail_type);
 				$thumbnail_url  = Context::getRequestUri().$thumbnail_file;
-
-			    $output = FileHandler::createImageFile($work['file'], $thumbnail_file, $width, $height, 'jpg', $thumbnail_type);
+				
+				$output = true;
+			    if(!file_exists($thumbnail_file)) $output = FileHandler::createImageFile($work['file'], $thumbnail_file, $width, $height, 'jpg', $thumbnail_type);
 				if($output) array_push($thumbnailList, $thumbnail_url );
 			}
 	<!--@end-->
