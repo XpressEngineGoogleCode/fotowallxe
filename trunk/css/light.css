@@ -6,6 +6,9 @@ body { background-color:#fff; color:#000; }
 #container { background:#f6f6f6;  }
 #hidden_area { background:#f6f6f6; }
 
+#slides .prev { background:url('../img/icon_prev.png') no-repeat left center; }
+#slides .next { background:url('../img/icon_next.png') no-repeat left center; }
+
 #header {}
 	#header h1 a { color:#000; }
 	#header h1 .sep { background:url('../img/bg_title_sep.png') no-repeat; }
@@ -27,6 +30,8 @@ body { background-color:#fff; color:#000; }
 
 #content .postTitle{ color:#000; }
 	#content .postTitle a { color:#000;}
+
+#content .postRow {}
 
 #content .postRow .postWrap { border-bottom:1px dotted #ccc; }
 	#content .postRow .postWrap .postTitle { color:#1c1c1c;}

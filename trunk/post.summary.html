@@ -1,37 +1,35 @@
-{@
-	$count = count($document_list);
-	$now = 0;
-}
+<!--#include('setting_summary.html')-->
 
-<!--@if($count>0)-->
-{@
-	$index = 0;
-	$lastIndex = round($count / $column_count);
-	if($count % $column_count != 0) $lastIndex ++;
+<!--@if($gallery_use)-->
+	<!--#include('setting_get_slides.html')-->
+	
+	<!--@if(count($thumbnailList)>0)-->
 
-	$new_document_list = array(); 
-	for($i=0;$i<$column_count;$i++) $new_document_list[$i] = array();
-}
-	<!--@for($start=0;$start<$column_count;$start++)-->
-		{@
-			$i = $start;
-			$to = $lastIndex;
-		}
-		<!--@for($i2=0;$i2<$to;$i2++)-->
-			<!--@if($i < $count)-->
-				{@ 
-					$d = array_slice($document_list,$i,1);
-					array_push($new_document_list[$start], $d[0]); 
-				}
-			<!--@end-->
-			{@ $i += $column_count; }
+	<!--%import("js/gallery.js")-->
+
+	<script type="text/javascript">
+		jQuery(function(){
+			jQuery('#slides').slides({
+				preload: true,
+				generateNextPrev: true,
+				effect: '{$gallery_effect}'
+			});
+		});
+	</script>
+
+	<div id="slides">
+		<div class="slides_container">
+		<!--@foreach($thumbnailList as $thumbnail)-->
+			<div class="slide">
+				<a href="{getUrl('document_srl',$thumbnail['document_srl'],'cpage','')}"><img src="{$thumbnail['url']}" alt="" /></a>
+				<h2><a href="{getUrl('document_srl',$thumbnail['document_srl'],'cpage','')}">{$thumbnail['document_title']}</a></h2>
+				<div class="info_bg">&nbsp;</div>		
+			</div>
 		<!--@end-->
+		</div>
+	</div>
 	<!--@end-->
-	{@
-		$document_list = $new_document_list;
-	}
 <!--@end-->
-
 
 <!--@foreach($document_list as $no=>$document_items)-->
 	<div class="postRow<!--@if($no==$column_count-1)--> postRowEnd<!--@end-->">	

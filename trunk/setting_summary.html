@@ -1,0 +1,33 @@
+{@
+	$count = count($document_list);
+	$now = 0;
+}
+
+<!--@if($count>0)-->
+{@
+	$index = 0;
+	$lastIndex = round($count / $column_count);
+	if($count % $column_count != 0) $lastIndex ++;
+
+	$new_document_list = array(); 
+	for($i=0;$i<$column_count;$i++) $new_document_list[$i] = array();
+}
+	<!--@for($start=0;$start<$column_count;$start++)-->
+		{@
+			$i = $start;
+			$to = $lastIndex;
+		}
+		<!--@for($i2=0;$i2<$to;$i2++)-->
+			<!--@if($i < $count)-->
+				{@ 
+					$d = array_slice($document_list,$i,1);
+					array_push($new_document_list[$start], $d[0]); 
+				}
+			<!--@end-->
+			{@ $i += $column_count; }
+		<!--@end-->
+	<!--@end-->
+	{@
+		$document_list = $new_document_list;
+	}
+<!--@end-->

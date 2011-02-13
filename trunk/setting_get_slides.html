@@ -1,0 +1,52 @@
+{@
+    $oDocumentModel = &getModel('document');
+	
+	$args = null;
+	$args->module_srl = $textyle->module_srl;
+	$args->page = 1;
+    $args->list_count = $gallery_count;
+
+	$args->search_target = 'uploaded_count';
+	$args->search_keyword = '1';
+
+	$slide_document_list = $oDocumentModel->getDocumentList($args);	
+
+	$oFileModel = &getModel('file');
+	$workList = array();
+	$thumbnailList = array();
+	
+	$width = $full_width;
+	$height = $full_width * 0.4;
+	$thumbnail_type = 'crop';
+}
+
+<!--@foreach($slide_document_list->data as $document)-->
+	{@
+		$file_list = $oFileModel->getFiles($document->document_srl);
+	}
+	<!--@if(count($file_list))-->
+		<!--@foreach($file_list as $file)-->
+			<!--@if($file->direct_download!='Y')-->
+			<!--@else if(!preg_match("/\.(jpg|png|jpeg|gif|bmp)$/i",$file->source_filename))-->
+			<!--@else-->
+			{@
+				$source_file = $file->uploaded_filename;
+				if(!file_exists($source_file)) $source_file = null;
+				array_push($workList, array('document_title'=>$document->getTitle(), 'document_srl'=>$document->document_srl,'thumbnail_srl'=>$file->file_srl,'file'=>$source_file));
+
+				break;
+			}
+			<!--@end-->
+		<!--@end-->
+	<!--@end-->
+<!--@end-->
+
+<!--@foreach($workList as $work)-->
+		{@
+			$thumbnail_file = sprintf('%sfotowall_%d_%dx%d.%s.jpg', $thumbnail_path, $work['thumbnail_srl'], $width, $height, $thumbnail_type);
+			$thumbnail_url  = Context::getRequestUri().$thumbnail_file;
+			$output = true;
+			if(!file_exists($thumbnail_file)) $output = FileHandler::createImageFile($work['file'], $thumbnail_file, $width, $height, 'jpg', $thumbnail_type);
+			if($output) array_push($thumbnailList, array('document_title'=>$work['document_title'],'document_srl'=>$work['document_srl'],'url'=>$thumbnail_url));
+		}
+<!--@end-->
