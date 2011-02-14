@@ -17,7 +17,7 @@
 					</div>
 				<!--@end-->
 
-					<h2 class="postTitle"><div class="background"></div><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{cut_str($document->getTitle(),40)}</a></h2>
+					<h2 class="postTitle"><span class="background"></span><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{cut_str($document->getTitle(),40)}</a></h2>
 					<!--@if($summary_cut_content>=0)-->
 					{@ $summary = $document->getSummary($summary_cut_content)}
 					<!--@if(!empty($summary))-->
