@@ -1,6 +1,6 @@
 <!--#include("setting_config.html")-->
 
-<!--@if($style=='darken')-->
+<!--@if($colorset=='darken')-->
 	<!--%import("css/darken.css")-->
 <!--@else-->
 	<!--%import("css/light.css")-->
@@ -95,7 +95,49 @@
 
                 <!--// display Post Summary -->
                 <!--@elseif($textyle_mode=='summary')-->
-					<!--#include('post.summary.html')-->
+					<!--@if($gallery_use)-->
+						<!--#include('setting_get_gallery.html')-->
+						
+						<!--@if(count($thumbnailList)>0)-->
+
+						<!--%import("js/gallery.js")-->
+
+						<script type="text/javascript">
+						//<![CDATA[
+							jQuery(function(){
+								jQuery('#slides').slides({
+									preload: true,
+									generateNextPrev: true,
+									effect: '{$gallery_effect}'
+								});
+							});
+						//]]>
+						</script>
+
+						<style type="text/css">		
+							#slides { height:{$gallery_height}px; }
+							.slides_container { height:{$gallery_height}px; }
+						</style>
+
+						<div id="slides">
+							<div class="slides_container">
+							<!--@foreach($thumbnailList as $thumbnail)-->
+								<div class="slide">
+									<a href="{getUrl('document_srl',$thumbnail['document_srl'],'cpage','')}"><img src="{$thumbnail['url']}" alt="" /></a>
+									<h2><a href="{getUrl('document_srl',$thumbnail['document_srl'],'cpage','')}">{$thumbnail['document_title']}</a></h2>
+									<div class="info_bg">&nbsp;</div>		
+								</div>
+							<!--@end-->
+							</div>
+						</div>
+						<!--@end-->
+					<!--@end-->
+
+					<!--@if($style == 'mossaic')-->
+						<!--#include('post.summary.mossaic.html')-->
+					<!--@else-->
+						<!--#include('post.summary.vertical.html')-->
+					<!--@end-->
 
                 <!--// display post body or body list -->
                 <!--@else-->
