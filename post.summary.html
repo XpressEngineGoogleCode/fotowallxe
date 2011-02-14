@@ -1,13 +1,14 @@
 <!--#include('setting_summary.html')-->
 
 <!--@if($gallery_use)-->
-	<!--#include('setting_get_slides.html')-->
+	<!--#include('setting_get_gallery.html')-->
 	
 	<!--@if(count($thumbnailList)>0)-->
 
 	<!--%import("js/gallery.js")-->
 
 	<script type="text/javascript">
+	//<![CDATA[
 		jQuery(function(){
 			jQuery('#slides').slides({
 				preload: true,
@@ -15,7 +16,13 @@
 				effect: '{$gallery_effect}'
 			});
 		});
+	//]]>
 	</script>
+
+	<style type="text/css">		
+		#slides { height:{$gallery_height}px; }
+		.slides_container { height:{$gallery_height}px; }
+	</style>
 
 	<div id="slides">
 		<div class="slides_container">
