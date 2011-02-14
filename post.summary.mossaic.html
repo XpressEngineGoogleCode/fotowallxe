@@ -1,23 +1,30 @@
 <!--#include('setting_summary.mossaic.html')-->
 
+<div class="postMossaicMode">
 <!--@foreach($document_list as $no=>$document_items)-->
-	<div class="postRow<!--@if($no==$column_count-1)--> postRowEnd<!--@end-->">	
-	<!--@foreach($document_items as $document)-->
-		<div class="postWrap <!--@if($document->thumbnailExists())-->haveThumbnail<!--@else-->dontHaveThumbnail<!--@end-->"  <!--@if($column_height!='auto')-->style="height:{$column_height}px"<!--@end-->>
-			<div class="postData">
+	<div class="postCell<!--@if($no==count($document_list)-1)--> postCellEnd<!--@end-->" style="margin-bottom:{$mossaic_margin}px; <!--@if($mossaic_height>0)-->height:{$mossaic_height}px;<!--@end-->">	
+	<!--@foreach($document_items as $no=>$document_data)-->
+		{@
+			$percent = $document_data['percent'];
+			$document = $document_data['document'];
+			
+			$margin = $mossaic_margin;
+			if($no == count($document_items)-1) $margin = 0;
+
+			$width = floor($full_width * ($percent/100)) - $margin;
+			
+		}
+		<div class="postWrap <!--@if($document->thumbnailExists())-->haveThumbnail<!--@else-->dontHaveThumbnail<!--@end-->" style="width:{$width}px; margin-right:{$margin}px;<!--@if(!$document->thumbnailExists())--> height:{$mossaic_thumbnail_height}px;<!--@end-->">
+			<div class="postData <!--@if($summary_title_in_thumbnail)-->innerTitleMode<!--@end-->">
 				<!--@if($document->thumbnailExists())-->
 					<div class="thumbnail">
-					<!--@if($column_thumbnail != 'ratio')-->
-						<a href="{getUrl('document_srl',$document->document_srl,'cpage','')}"><img src="{$document->getThumbnail(175,$column_thumbnail,'crop')}" class="summaryThumb" alt="" /></a>
-					<!--@else-->
-						<a href="{getUrl('document_srl',$document->document_srl,'cpage','')}"><img src="{$document->getThumbnail(175,0,'ratio')}" class="summaryThumb" alt="" /></a>
-					<!--@end-->
+						<a href="{getUrl('document_srl',$document->document_srl,'cpage','')}"><img src="{$document->getThumbnail($width,$mossaic_thumbnail_height,'crop')}" class="summaryThumb" alt="" /></a>
 					</div>
-				<!--@end-->
-
-				<h2 class="postTitle"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{cut_str($document->getTitle(),40)}</a></h2>
-				<!--@if($column_cut_content>=0)-->
-				{@ $summary = $document->getSummary($column_cut_content)}
+				<!--@end-->		
+				
+				<h2 class="postTitle"><div class="background"></div><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{cut_str($document->getTitle(),40)}</a></h2>
+				<!--@if($summary_cut_content>=0)-->
+				{@ $summary = $document->getSummary($summary_cut_content)}
 				<!--@if(!empty($summary))-->
 				<div class="postContent">
 					{$summary}
@@ -27,7 +34,7 @@
 			</div>
 		</div>
 	<!--@end-->
+		<div class="clear"></div>
 	</div>
 <!--@end-->
-
-<div class="clear"></div>
+</div>

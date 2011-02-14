@@ -29,17 +29,6 @@ function sendYozm(obj, message, link) {
 jQuery(document).ready(function(){	
 	dropdownEvent(document);
 
-	var max_height = 0;
-	jQuery('.postRow').each(function(i, item) {
-		var now_height = jQuery(item).height();
-		if(max_height < now_height) {
-			max_height = now_height;
-		}
-	});
-	if(max_height > 0) {
-		jQuery('.postRow').height(max_height);
-	}
-	
 	// 자동으로 특정 영역내에서는 화면에서 사라지지 않도록 설정함
 	if(jQuery(".autoscroll").length > 0) {	
 			var lastTo = 0;

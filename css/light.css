@@ -31,18 +31,20 @@ body { background-color:#fff; color:#000; }
 #content .postTitle{ color:#000; }
 	#content .postTitle a { color:#000;}
 
-#content .postRow {}
+#content .postWrap { border-bottom:1px dotted #ccc; }
+	#content .postWrap .postTitle { color:#1c1c1c;}
+	#content .postWrap .postContent { color:#777777;}
 
-#content .postRow .postWrap { border-bottom:1px dotted #ccc; }
-	#content .postRow .postWrap .postTitle { color:#1c1c1c;}
-	#content .postRow .postWrap .postContent { color:#777777;}
+#content .postCell .postWrap { border-bottom:0; }
 
-#content .postRow .dontHaveThumbnail { background:#333; }
-	#content .postRow .dontHaveThumbnail .postTitle a { color:#fff; }
-		#content .postRow .dontHaveThumbnail .postContent { color:#bbb; }
+#content .dontHaveThumbnail { background:#333; }
+	#content .dontHaveThumbnail .postTitle a { color:#fff; }
+		#content .dontHaveThumbnail .postContent { color:#bbb; }
 
 #content .postTitleList .postTitle  { }
 	#content .postTitleList .postTitle .point { color:#C01000; }
+
+#content .innerTitleMode { background:#333; }
 
 #content .searchResult { border-top:1px solid #ccc; }
 #content .searchResult li a { color:#333; }

@@ -13,9 +13,7 @@
 </style>
 
 <script type="text/javascript">
-//<![CDATA[
 	var full_width = "{$full_width}";
-//]]>
 </script>
 
 <!--%import("js/fotowall.js")-->
@@ -103,7 +101,6 @@
 						<!--%import("js/gallery.js")-->
 
 						<script type="text/javascript">
-						//<![CDATA[
 							jQuery(function(){
 								jQuery('#slides').slides({
 									preload: true,
@@ -111,7 +108,6 @@
 									effect: '{$gallery_effect}'
 								});
 							});
-						//]]>
 						</script>
 
 						<style type="text/css">		
@@ -136,7 +132,7 @@
 					<!--@if($style == 'mossaic')-->
 						<!--#include('post.summary.mossaic.html')-->
 					<!--@else-->
-						<!--#include('post.summary.vertical.html')-->
+						<!--#include('post.summary.column.html')-->
 					<!--@end-->
 
                 <!--// display post body or body list -->

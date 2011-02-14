@@ -1,0 +1,45 @@
+{@
+	$count = count($document_list);
+	$now = 0;
+	
+	$new_mossaic_array = $mossaic_array;
+	$full_mossaic_count = 0;
+	foreach($mossaic_array as $a) $full_mossaic_count += count($a);
+
+	$new_document_list = array();
+}
+
+<!--@if($full_mossaic_count < $count)-->
+{@
+	$to = round(($count - $full_mossaic_count) / $full_mossaic_count);
+	for($i=0;$i<$to;$i++) $new_mossaic_array = array_merge($new_mossaic_array, $mossaic_array);
+}
+<!--@end-->
+
+{@
+	$i = 0;
+	reset($document_list);
+	$document = current($document_list);
+}
+<!--@foreach($new_mossaic_array as $new_mossaic)-->
+	{@
+		$document_item_list = array();
+	}
+	<!--@foreach($new_mossaic as $m)-->
+		<!--@if($i < $count)-->		
+			<!--@if($document)--> {@ array_push($document_item_list, array('percent'=>$m, 'document'=>$document)); } <!--@end-->
+			{@
+				$document = next($document_list);
+			}
+		<!--@end-->
+		{@
+			$i ++;
+		}
+	<!--@end-->
+
+	<!--@if(count($document_item_list)>0)--> {@ array_push($new_document_list,$document_item_list); } <!--@end-->
+<!--@end-->
+
+{@
+	$document_list = $new_document_list;
+}
