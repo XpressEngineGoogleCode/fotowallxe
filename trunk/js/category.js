@@ -2,33 +2,35 @@
 
 var lastDropdown = null;
 var lastDropdownTitle = null;
+function viewDropDown() {
+	closeEvent();
+
+	var root = jQuery(this).parent().parent();
+
+	var nowDropdown = root.find("dd ul");
+	var nowDropdownTitle = jQuery(this).parent();
+
+	if(nowDropdown != lastDropdown) {
+		if(lastDropdown != null) lastDropdown.hide();
+		lastDropdown = nowDropdown;
+	}
+
+	if(nowDropdownTitle != lastDropdownTitle) {
+		if(lastDropdownTitle != null) lastDropdownTitle.removeClass('down');
+		lastDropdownTitle = nowDropdownTitle;
+	}
+
+	if(nowDropdown.toggle().css('display') == 'none') {
+		nowDropdownTitle.removeClass('down');
+	} else {
+		nowDropdownTitle.addClass('down');
+	}
+
+	return false;
+}
+
 function dropdownEvent(parent) {
-	jQuery(parent).find(".dropdown dt a").click(function() {
-		closeEvent();
-
-		var root = jQuery(this).parent().parent();
-
-		var nowDropdown = root.find("dd ul");
-		var nowDropdownTitle = jQuery(this).parent();
-
-		if(nowDropdown != lastDropdown) {
-			if(lastDropdown != null) lastDropdown.hide();
-			lastDropdown = nowDropdown;
-		}
-
-		if(nowDropdownTitle != lastDropdownTitle) {
-			if(lastDropdownTitle != null) lastDropdownTitle.removeClass('down');
-			lastDropdownTitle = nowDropdownTitle;
-		}
-
-		if(nowDropdown.toggle().css('display') == 'none') {
-			nowDropdownTitle.removeClass('down');
-		} else {
-			nowDropdownTitle.addClass('down');
-		}
-
-		return false;
-	});
+	jQuery(parent).find(".dropdown dt a").click(viewDropDown).focus(viewDropDown);
 
 	jQuery(parent).find(".dropdown dd ul li a").click(function() {
 		if(jQuery(this).attr('disabled') == 'disabled') {

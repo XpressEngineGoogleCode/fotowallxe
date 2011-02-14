@@ -15,8 +15,8 @@
 	$workList = array();
 	$thumbnailList = array();
 	
-	$width = $full_width;
-	$height = $full_width * 0.4;
+	$gallery_width = $full_width;
+	$gallery_height = $full_width * 0.4;
 	$thumbnail_type = 'crop';	
 	
 	$thumbnail_path = sprintf('files/cache/thumbnails/fotowall/');
@@ -45,10 +45,10 @@
 
 <!--@foreach($workList as $work)-->
 		{@
-			$thumbnail_file = sprintf('%sfotowall_%d_%dx%d.%s.jpg', $thumbnail_path, $work['thumbnail_srl'], $width, $height, $thumbnail_type);
+			$thumbnail_file = sprintf('%sfotowall_%d_%dx%d.%s.jpg', $thumbnail_path, $work['thumbnail_srl'], $gallery_width, $gallery_height, $thumbnail_type);
 			$thumbnail_url  = Context::getRequestUri().$thumbnail_file;
 			$output = true;
-			if(!file_exists($thumbnail_file)) $output = FileHandler::createImageFile($work['file'], $thumbnail_file, $width, $height, 'jpg', $thumbnail_type);
+			if(!file_exists($thumbnail_file)) $output = FileHandler::createImageFile($work['file'], $thumbnail_file, $gallery_width, $gallery_height, 'jpg', $thumbnail_type);
 			if($output) array_push($thumbnailList, array('document_title'=>$work['document_title'],'document_srl'=>$work['document_srl'],'url'=>$thumbnail_url));
 		}
 <!--@end-->

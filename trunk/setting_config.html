@@ -1,9 +1,10 @@
 {@
 	// 사용자 설정을 위한 설정 값들 ..
 
-	$gallery_use = false; // 갤러리 사용 (최근 이미지)
+	$gallery_use = true; // 갤러리 사용 (최근 이미지)
 	$gallery_count = 4;
 	$gallery_effect = 'slide'; // slide, fade
+
 
 	$simple_mode = true; // simplemode = 댓글, 트랙백을 사용하지 않는 아주 심플한 모양을 나타낼때 사용함
 
@@ -18,8 +19,11 @@
 	
 	$share = true; // 공유하기 기능 (트위터, 페이스북)
 	$thumbnail_auto_resize = true; // 사진(글) 보기일 때 갤러리의 썸네일을 자동으로 너비를 맞추는지 결정 : 'true' : 너비를 강제 조절, 'false' : 너비를 그대로.. 가운데 정렬
+	
+	//
+	// XXX - 여기서 부터는 수정하지 말아주세요
+	//
 
-	// -- 여기서 부터는 수정하지 말아주세요
 	$full_width = (($column_width + $column_margin) * $column_count) - $column_margin;
 	
 	// TODO : darken 컬러셋 지원 예정
