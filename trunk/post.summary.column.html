@@ -1,10 +1,12 @@
-<!--#include('setting_summary.vertical.html')-->
+<!--#include('setting_summary.column.html')-->
 
+<div class="postColumnMode">
 <!--@foreach($document_list as $no=>$document_items)-->
 	<div class="postRow<!--@if($no==$column_count-1)--> postRowEnd<!--@end-->">	
 	<!--@foreach($document_items as $document)-->
 		<div class="postWrap <!--@if($document->thumbnailExists())-->haveThumbnail<!--@else-->dontHaveThumbnail<!--@end-->"  <!--@if($column_height!='auto')-->style="height:{$column_height}px"<!--@end-->>
-			<div class="postData">
+			<div class="postData <!--@if($summary_title_in_thumbnail)-->innerTitleMode<!--@end-->">
+
 				<!--@if($document->thumbnailExists())-->
 					<div class="thumbnail">
 					<!--@if($column_thumbnail != 'ratio')-->
@@ -15,15 +17,15 @@
 					</div>
 				<!--@end-->
 
-				<h2 class="postTitle"><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{cut_str($document->getTitle(),40)}</a></h2>
-				<!--@if($column_cut_content>=0)-->
-				{@ $summary = $document->getSummary($column_cut_content)}
-				<!--@if(!empty($summary))-->
-				<div class="postContent">
-					{$summary}
-				</div>
-				<!--@end-->
-				<!--@end-->
+					<h2 class="postTitle"><div class="background"></div><a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{cut_str($document->getTitle(),40)}</a></h2>
+					<!--@if($summary_cut_content>=0)-->
+					{@ $summary = $document->getSummary($summary_cut_content)}
+					<!--@if(!empty($summary))-->
+					<div class="postContent">
+						{$summary}
+					</div>
+					<!--@end-->
+					<!--@end-->	
 			</div>
 		</div>
 	<!--@end-->
@@ -31,3 +33,4 @@
 <!--@end-->
 
 <div class="clear"></div>
+</div>

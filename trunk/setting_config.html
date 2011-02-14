@@ -1,22 +1,37 @@
 {@
 	// 사용자 설정을 위한 설정 값들 ..
 
-	$style = 'mossaic'; // vertical, mossaic
+	$style = 'column'; // column, mossaic
 
 	$gallery_use = false; // 갤러리 사용 (최근 이미지)
 	$gallery_count = 4;
 	$gallery_effect = 'slide'; // slide, fade
 
 	$simple_mode = true; // simplemode = 댓글, 트랙백을 사용하지 않는 아주 심플한 모양을 나타낼때 사용함
+	
+	// for Column mode
 
 	$column_width = 175; // 컬럼의 너비
 	$column_margin = 40; // 컬럼의 높이
 
 	$column_count = 3; // 컬럼 수 (가로)
 	$column_thumbnail = 'ratio'; // 컬럼의 썸네일 방식 'ratio' : 가로 기준 자동 조절, '숫자' : 높이로 자르기
-	$column_height = 'auto'; // 컬럼의 썸네일 높이 방식 'auto' : 높이 자동조절, '숫자' :  높이로 고정 ( * 높이 고정시 썸네일 역시 높이 조절 필요 )
+	$column_height = 'auto'; // 컬럼의 높이 방식 'auto' : 높이 자동조절, '숫자' :  높이로 고정 ( * 높이 고정시 썸네일 역시 높이 조절 필요 )
 
-	$column_cut_content = 100; // 컬럼에 표시되는 본문의 글자 수 : 0 이면 자르지 않음. -1 이면 보이질 않음
+
+	// for Mossaic mode
+
+	$mossaic_array = array(array('50','30','20'), array('30','70'));
+	$mossaic_margin = 10;
+	$mossaic_thumbnail_height = 200; // 컬럼방식과 달리.. 강제로 높이를 지정할 필요 있음
+	$mossaic_height = 0; // 높이
+
+	// summary Mode
+	
+	$summary_title_in_thumbnail = false; // 본문이 썸네일 영역으로 ..
+	$summary_cut_content = 100; // 표시되는 본문의 글자 수 : 0 이면 자르지 않음. -1 이면 보이질 않음
+
+	// view Mode
 	
 	$share = true; // 공유하기 기능 (트위터, 페이스북)
 	$thumbnail_auto_resize = true; // 사진(글) 보기일 때 갤러리의 썸네일을 자동으로 너비를 맞추는지 결정 : 'true' : 너비를 강제 조절, 'false' : 너비를 그대로.. 가운데 정렬
